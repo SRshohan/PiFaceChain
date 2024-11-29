@@ -1,21 +1,33 @@
 from deepface import DeepFace
+from deepface.modules.verification import __extract_faces_and_embeddings
 
-result = DeepFace.verify(
-  img1_path = "picture.jpg",
-  img2_path = "picture1.JPG",
-)
+def verification(img1_p, img2_p):
 
-# print(result)
+  result = DeepFace.verify(
+    img1_path = img1_p,
+    img2_path = img2_p,
+  )
 
-embedding_objs = DeepFace.represent(
-  img_path = "picture.jpg"
-)
+  print(result["verified"])
 
-embedding_objs1 = DeepFace.represent(
-  img_path = "picture1.JPG"
-)
+verification("registration_capture.jpg", "verification_capture.jpg")
 
-print(embedding_objs)
-print("Separate\n")
 
-print(embedding_objs1)
+def facial_embeddings(img):
+  embedd = __extract_faces_and_embeddings(img)
+  print(embedd)
+
+# facial_embeddings("captured_image.jpg")
+
+# embedding_objs = DeepFace.represent(
+#   img_path = "picture.jpg"
+# )
+
+# embedding_objs1 = DeepFace.represent(
+#   img_path = "picture1.JPG"
+# )
+
+# print(embedding_objs)
+# print("\nSeparate\n")
+
+# print(embedding_objs1)
