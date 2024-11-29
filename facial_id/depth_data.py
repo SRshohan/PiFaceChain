@@ -1,7 +1,7 @@
 from deepface import DeepFace
 from deepface.modules.verification import __extract_faces_and_embeddings
 
-def verification(img1_p, img2_p):
+def biometric(img1_p, img2_p):
 
   result = DeepFace.verify(
     img1_path = img1_p,
@@ -10,7 +10,7 @@ def verification(img1_p, img2_p):
 
   print(result["verified"])
 
-verification("registration_capture.jpg", "verification_capture.jpg")
+biometric("registration_capture.jpg", "image.png")
 
 
 def facial_embeddings(img):
