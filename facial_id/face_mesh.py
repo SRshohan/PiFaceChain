@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 import time
 
-def draw_landmarks_on_camera(countdown=5, output_path="captured.jpg"):
+def draw_landmarks_on_camera(countdown=5, output_path="captured.jpg", task="verification"):
     # Initialize MediaPipe Face Mesh
     mp_face_mesh = mp.solutions.face_mesh
     face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
@@ -50,7 +50,7 @@ def draw_landmarks_on_camera(countdown=5, output_path="captured.jpg"):
                 break
 
         # Show the feed
-        cv2.imshow("Camera Feed", frame)
+        cv2.imshow(f"Camera Feed {task}", frame)
 
         # Key press handling
         key = cv2.waitKey(1) & 0xFF
