@@ -1,7 +1,7 @@
 import json
 import subprocess
 from deepface import DeepFace
-from deepface.modules.verification import __extract_faces_and_embeddings
+import sys
 
 def biometric(img1_p, img2_p):
     result = DeepFace.verify(
@@ -11,8 +11,21 @@ def biometric(img1_p, img2_p):
     print(result["verified"])
 
 def facial_embeddings(img1):
+    import tensorflow as tf
+    tf.keras.backend.clear_session()
+    from deepface.modules.verification import __extract_faces_and_embeddings
     embedd1 = __extract_faces_and_embeddings(img1)
     return embedd1[0][0]
+
+
+from webui_register import MainWindow
+from PyQt5.QtWidgets import QApplication
+
+app = QApplication(sys.argv)
+window = MainWindow()
+window.show()
+app.exec_()
+
 
 file_name = "form_data.json"
 
@@ -26,13 +39,13 @@ try:
 except (json.JSONDecodeError, FileNotFoundError, ValueError) as e:
     print(f"Error reading {file_name}: {e}")
     existing_data = []
-campus_id = existing_data[0]["Campus ID"]
-name = existing_data[0]["Name"]
-email = existing_data[0]["Email"]
-department = existing_data[0]["Department"]
-fe = existing_data[0]["fe"]
+campus_id = existing_data[-1]["Campus ID"]
+name = existing_data[-1]["Name"]
+email = existing_data[-1]["Email"]
+department = existing_data[-1]["Department"]
+# fe = existing_data[-1]["fe"]
 # Update the data
-existing_data[0]["fe"] = str(facial_embeddings(f"{campus_id}_registered_face.jpg"))
+existing_data[-1]["fe"] = str(facial_embeddings(f"{campus_id}_registered_face.jpg"))
 
 # Save back the updated data to the file
 with open(file_name, "w") as file:
@@ -74,6 +87,7 @@ def updateStateDB(campus_id, name, email, department, fe):
     # Execute the command and return the result
     return subprocess.run(command, text=True, capture_output=True)
 
+fe = existing_data[-1]["fe"]
 # Run the updateStateDB function
 result = updateStateDB(campus_id, name, email, department, fe)
 
@@ -81,6 +95,8 @@ result = updateStateDB(campus_id, name, email, department, fe)
 print(result.stdout)
 if result.stderr:
     print(f"Error: {result.stderr}")
+
+
 
 
 
