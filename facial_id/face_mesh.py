@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 import time
 
-def draw_landmarks_on_camera(countdown=5, output_path="captured.jpg", task="verification"):
+def draw_landmarks_on_camera(countdown=3, output_path="captured.jpg", task="verification"):
     # Initialize MediaPipe Face Mesh
     mp_face_mesh = mp.solutions.face_mesh
     face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
