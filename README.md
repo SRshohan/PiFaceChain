@@ -76,3 +76,22 @@ flowchart TB
 
 
 ```
+
+
+
+# Features to consider
+
+Security Surveillance System 
+- Detect accidents & Intrusions 
+- Record everything in local networks in blockchain 
+- Quick Implementations and Updates everyday security incidents or non-access areas 
+- Large organizations if any bad incidents happens like killing or hurting someone, it should atomically go to police using private blockchain without accessing full-cc cameras access by creating anther channel.
+- Have classification to detect this incidents really fast for real time videos
+
+# Possible Tech Stack For AI
+
+For real-time video classification with descriptions on an NVIDIA Jetson Nano:
+
+- Best Stack: Python + TensorRT + DeepStream SDK.
+- Best Models: YOLOv8 or MobileNet for classification; DistilGPT-2 for text.
+- Key Optimizations: Use TensorRT for inference and CUDA for preprocessing.
