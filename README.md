@@ -96,7 +96,7 @@ Below is a quick summary of the main libraries and tools you should have in your
    - **Hyperledger Fabric** or **Web3 (for Ethereum)**: For interacting with the blockchain network.  
    - **Smart Contracts / Chaincode**: A must to define how events are recorded and how the police channel is triggered.
 
-6. **OpenCV** (Optional for Pre/Post-processing)  
+6. **OpenCV** (Pre/Post-processing)  
    - **Why**: Although DeepStream handles a lot, you may still want OpenCV in Python for certain pre-processing tasks, debugging, or custom overlays.
 
 7. **ONNX** (Open Neural Network Exchange)  
