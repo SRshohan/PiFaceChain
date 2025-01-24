@@ -58,9 +58,7 @@ This guide outlines the **key technologies** to build a real-time security surve
 ## 2. Blockchain for Event Recording & Alerts
 
 ### 2.1 Private/Permissioned Blockchain
-- **Options**: 
-  - **Hyperledger Fabric**: Modular, permissioned blockchain. 
-  - **Private Ethereum**: Familiar smart-contract environment but in a private setting.
+ - **Hyperledger Fabric**: Modular, permissioned blockchain. 
 - **Key Role**: Store event metadata (timestamp, type, short AI-generated description) securely and immutably.
 - **Why Private**: Ensures **confidentiality** of CCTV data (no public access).
 
