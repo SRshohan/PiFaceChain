@@ -8,3 +8,5 @@ face_landmarker_v2_with_blendshapes.task
 hf/
 verification/
 mediapipe_env/
+facial_id/blaze_face_short_range.tflite
+facial_id/face_landmarker.task
