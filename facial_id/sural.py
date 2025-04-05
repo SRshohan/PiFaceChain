@@ -2,8 +2,11 @@ from deepface import DeepFace
 import cv2
 import os
 import time
-from command import InvokeFunction
-
+from helper import decode_base64_to_image
+from command import QueryFromBlockchain, InvokeFunction
+import json
+from hybrid_approach import track_eyes_with_liveness
+from helper import encode_image_to_base64, decode_base64_to_image
 
 def biometric(img1, img2_path):
     # If img1 is a numpy array (frame from camera)
@@ -30,14 +33,23 @@ def biometric(img1, img2_path):
         if not isinstance(img1, str) and os.path.exists("temp_frame.jpg"):
             os.remove("temp_frame.jpg")
 
+def registration_process(campus_id, name, email, department):
+    # Capture the image using the hybrid approach.
+    captured_img = track_eyes_with_liveness()
+    
+    # Encode the captured image to base64.
+    base64_string = encode_image_to_base64(captured_img)
+    
+    # Build parameters for the chaincode function call.
+    parameters = [campus_id, name, email, department, base64_string]
+    function = "CreateProfile"
+    response = InvokeFunction(function, parameters)
+    if response["success"]:
+        print("Invoke successful:", response["output"], "It worked!!")
+    else:
+        print("Invoke failed:", response["error"])
 
-
-if __name__ == "__main__":
-    from helper import decode_base64_to_image
-    from command import QueryFromBlockchain
-    import json
-    import base64
-
+def verification(campus_id):
     ot = QueryFromBlockchain("ReadProfile", ["0002"])
     if ot["success"]:
         print("Query successful:", ot["output"], "It worked!!")
@@ -53,12 +65,12 @@ if __name__ == "__main__":
         print("Query failed:", ot["error"])
     
     cap = cv2.VideoCapture(0)
-    reference_img = "None_face_cropped.jpg"  # Make sure this file exists
+    # reference_img = "None_face_cropped.jpg"  # Make sure this file exists
     
-    # Check if reference image exists
-    if not os.path.isfile(reference_img):
-        print(f"Error: Reference image '{reference_img}' not found!")
-        exit(1)
+    # # Check if reference image exists
+    # if not os.path.isfile(reference_img):
+    #     print(f"Error: Reference image '{reference_img}' not found!")
+    #     exit(1)
     
     print("Starting camera capture. Press 'q' to quit...")
     
@@ -74,13 +86,13 @@ if __name__ == "__main__":
         # Save current frame temporarily
         temp_frame = "current_frame.jpg"
         cv2.imwrite(temp_frame, frame)
-        time.sleep(5)
+        
         
         # Check verification every few frames (not every frame to avoid performance issues)
         try:
             result = biometric(temp_frame, decoded_image)
             if result:
-                print("Match found!")
+                print("Match found!", result, type(result))
                 break
         except Exception as e:
             print(f"Verification error: {e}")
@@ -99,6 +111,5 @@ if __name__ == "__main__":
 
 
 
-
-
-
+if __name__ == "__main__":
+    registration_process("000234", "test", "test", "test")

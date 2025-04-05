@@ -60,7 +60,7 @@ def InvokeFunction(function, parameters=None):
     print(f"Debug - JSON Args: {json_args}")  # Add debugging
     
     # Construct the chaincode query command.
-    access_device = [
+    access = [
         peer_path,
         "chaincode", "invoke", 
         "-o", "localhost:7050",
@@ -79,14 +79,14 @@ def InvokeFunction(function, parameters=None):
     ]
     
     try:
-        print(f"Debug - Running command: {' '.join(access_device)}")  # Add debugging
-        result = subprocess.run(access_device, cwd=network_directory, env=identity_variables, 
+        print(f"Debug - Running command: {' '.join(access)}")  # debugging
+        result = subprocess.run(access, cwd=network_directory, env=identity_variables, 
                                 capture_output=True, text=True)
         
         if result.returncode != 0:
             return {"success": False, "error": result.stderr}
         
-        print(f"Debug - Command output: {result.stdout}")  # Add debugging
+        print(f"Debug - Command output: {result.stdout}")  # debugging
         return {"success": True, "output": result.stdout}
     except Exception as e:
         return {"success": False, "error": str(e)}

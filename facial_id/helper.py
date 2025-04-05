@@ -35,15 +35,13 @@ def decode_base64_to_image(base64_string, output_filename="decoded_image.jpg"):
         print(f"Error decoding image: {e}")
         return None
     
-def encode_image_to_base64():
+def encode_image_to_base64(captured_img):
     """
     Capture an image using the hybrid approach and encode it to a base64 string
     
     Returns:
         The base64 encoded string representation of the captured image
     """
-
-    captured_img = track_eyes_with_liveness()
 
     _, buffer = cv2.imencode('.jpg', captured_img)
     base64_string = base64.b64encode(buffer).decode('utf-8')
