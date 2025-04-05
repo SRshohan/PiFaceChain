@@ -8,6 +8,7 @@ def calculate_ear(eye_points):
     Calculate Eye Aspect Ratio (EAR) for blink detection.
     EAR = (|p2-p6| + |p3-p5|) / (2 * |p1-p4|)
     """
+
     # Vertical distances
     d1 = math.dist(eye_points[1], eye_points[5])
     d2 = math.dist(eye_points[2], eye_points[4])
@@ -17,7 +18,7 @@ def calculate_ear(eye_points):
     
     return (d1 + d2) / (2 * d3)
 
-def track_eyes_with_liveness():
+def track_eyes_with_liveness(campus_id=None, name=None, email=None, department=None):
     # Eye landmark indices for EAR calculation
     LEFT_EYE_EAR_INDICES = [33, 160, 158, 133, 153, 144]
     RIGHT_EYE_EAR_INDICES = [362, 385, 387, 263, 380, 373]
@@ -158,9 +159,9 @@ def track_eyes_with_liveness():
                 face_crop = frame[y_min:y_max, x_min:x_max]
                 
                 # Save the cropped face
-                cv2.imwrite("face_cropped.jpg", face_crop)
+                cv2.imwrite(f"{campus_id}_face_cropped.jpg", face_crop)
                 picture_taken = True
-                print("Cropped face saved as 'face_cropped.jpg'")
+                print(f"Cropped face saved as '{campus_id}_face_cropped.jpg'")
                 
                 # Display the cropped face for preview
                 cv2.imshow("Cropped Face", face_crop)
@@ -168,7 +169,7 @@ def track_eyes_with_liveness():
 
     cap.release()
     cv2.destroyAllWindows()
-    return liveness_confirmed
+    return face_crop
 
 # Usage
 if __name__ == "__main__":

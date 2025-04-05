@@ -109,8 +109,7 @@ def track_eyes(countdown=3, output_path="eye_tracking.jpg"):
     cap.release()
     cv2.destroyAllWindows()
 
-# Run the eye tracker
-track_eyes()
+
 
 
 
