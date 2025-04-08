@@ -7,6 +7,7 @@ from command import QueryFromBlockchain, InvokeFunction
 import json
 from hybrid_approach import track_eyes_with_liveness
 from helper import encode_image_to_base64, decode_base64_to_image
+import requests
 
 def biometric(img1, img2_path):
     # If img1 is a numpy array (frame from camera)
@@ -92,7 +93,8 @@ def verification(campus_id):
         try:
             result = biometric(temp_frame, decoded_image)
             if result:
-                print("Match found!", result, type(result))
+                response = requests.get(f"http://192.168.1.14:5000/open")
+                print("Match found!", result, response)
                 break
         except Exception as e:
             print(f"Verification error: {e}")
@@ -112,4 +114,11 @@ def verification(campus_id):
 
 
 if __name__ == "__main__":
-    registration_process("000234", "test", "test", "test")
+    userInput = input("Enter 1 for registration or 2 for verification: ")
+    if userInput == "1":
+        registration_process("1234", "sr", "srahman", "ece")  # Replace with actual values (campus_id, name, email, department)
+    elif userInput == "2":
+        verification("000234")
+    else:
+        print("Invalid option selected.")
+    
