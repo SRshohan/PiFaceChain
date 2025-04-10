@@ -51,7 +51,7 @@ def registration_process(campus_id, name, email, department):
         print("Invoke failed:", response["error"])
 
 def verification(campus_id):
-    ot = QueryFromBlockchain("ReadProfile", ["0002"])
+    ot = QueryFromBlockchain("ReadProfile", [campus_id])
     if ot["success"]:
         print("Query successful:", ot["output"], "It worked!!")
         # Decode the base64 string to an image
@@ -93,7 +93,7 @@ def verification(campus_id):
         try:
             result = biometric(temp_frame, decoded_image)
             if result:
-                response = requests.get(f"http://192.168.1.14:5000/open")
+                response = requests.get(f"http://149.61.230.36:5000/open")
                 print("Match found!", result, response)
                 break
         except Exception as e:
@@ -116,9 +116,9 @@ def verification(campus_id):
 if __name__ == "__main__":
     userInput = input("Enter 1 for registration or 2 for verification: ")
     if userInput == "1":
-        registration_process("1234", "sr", "srahman", "ece")  # Replace with actual values (campus_id, name, email, department)
+        registration_process("12340", "sr", "srahman", "ece")  # Replace with actual values (campus_id, name, email, department)
     elif userInput == "2":
-        verification("000234")
+        verification("12340")
     else:
         print("Invalid option selected.")
     

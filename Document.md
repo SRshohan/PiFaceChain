@@ -1,5 +1,6 @@
 
 Deploy Chaincode
+./network.sh up createChannel -s couchdb
 
 '''bash
 ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript -ccl javascript

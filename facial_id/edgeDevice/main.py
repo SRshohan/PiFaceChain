@@ -23,7 +23,7 @@ def handle_door_status(data):
 
 if __name__ == '__main__':
     # Run the server on all interfaces, port 5000
-    socketio.run(app, host='192.168.1.14', port=5000, debug=True)
+    socketio.run(app, host='149.61.230.36', port=5000, debug=True)
 
 
 
