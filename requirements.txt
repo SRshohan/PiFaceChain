@@ -1,4 +1,3 @@
-deepface
 mediapipe
 cmake
 python-opencv
