@@ -1,15 +1,13 @@
-import os
+from deepface import DeepFace
 import cv2
-from command import InvokeFunction, QueryFromBlockchain
+import os
+import time
+from helper import decode_base64_to_image
+from command import QueryFromBlockchain, InvokeFunction
+import json
 from hybrid_approach import track_eyes_with_liveness
 from helper import encode_image_to_base64, decode_base64_to_image
-import json
-
 import requests
-from deepface import DeepFace
-import numpy as np
-
-os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 
 def biometric(img1, img2_path):
     # If img1 is a numpy array (frame from camera)
@@ -52,10 +50,8 @@ def registration_process(campus_id, name, email, department):
     else:
         print("Invoke failed:", response["error"])
 
-
-def verification_process(campus_id):
-    # Query the blockchain for the registered profile using dynamic parameters.
-    ot = QueryFromBlockchain("ReadProfile", ["0002"])
+def verification(campus_id):
+    ot = QueryFromBlockchain("ReadProfile", [campus_id])
     if ot["success"]:
         print("Query successful:", ot["output"], "It worked!!")
         # Decode the base64 string to an image
@@ -97,7 +93,8 @@ def verification_process(campus_id):
         try:
             result = biometric(temp_frame, decoded_image)
             if result:
-                print("Match found!", result, type(result))
+                response = requests.get(f"http://192.168.1.14:5000/open")
+                print("Match found!", result, response)
                 break
         except Exception as e:
             print(f"Verification error: {e}")
@@ -115,9 +112,13 @@ def verification_process(campus_id):
     print("Process completed!")
 
 
-if __name__ == "__main__":
-    import threading
 
-    x = threading.Thread(target=verification_process("0002"))
-    x.start()
+if __name__ == "__main__":
+    userInput = input("Enter 1 for registration or 2 for verification: ")
+    if userInput == "1":
+        registration_process("12340", "sr", "srahman", "ece")  # Replace with actual values (campus_id, name, email, department)
+    elif userInput == "2":
+        verification("12340")
+    else:
+        print("Invalid option selected.")
     

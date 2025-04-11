@@ -15,7 +15,7 @@ def facial_embeddings(img1):
     tf.keras.backend.clear_session()
     from deepface.modules.verification import __extract_faces_and_embeddings
     embedd1 = __extract_faces_and_embeddings(img1)
-    return embedd1[0][0]
+    return embedd1
 
 
 from webui_register import MainWindow
