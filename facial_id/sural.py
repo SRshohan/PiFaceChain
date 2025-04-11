@@ -93,7 +93,7 @@ def verification(campus_id):
         try:
             result = biometric(temp_frame, decoded_image)
             if result:
-                response = requests.get(f"http://149.61.230.36:5000/open")
+                response = requests.get(f"http://192.168.1.14:5000/open")
                 print("Match found!", result, response)
                 break
         except Exception as e:

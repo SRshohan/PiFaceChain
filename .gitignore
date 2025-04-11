@@ -10,7 +10,6 @@ mediapipe_env/
 <<<<<<< HEAD
 facial_id/blaze_face_short_range.tflite
 facial_id/face_landmarker.task
-=======
 form_data.json
 .gitignore
 resources.md
@@ -24,4 +23,4 @@ hf/fabric-samples/auction-dutch/
 hf/fabric-samples/auction-simple/
 hf/fabric-samples/asset-transfer-abac/
 hf/fabric-samples/full-stack-asset-transfer-guide
->>>>>>> main
+
