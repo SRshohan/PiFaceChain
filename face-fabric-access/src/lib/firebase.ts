@@ -1,9 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-// import dotenv  from "dotenv";
 
-
-// dotenv.config();
 // import serviceaccount from "./firebase_service_account.json";
 
 // Firebase configuration
