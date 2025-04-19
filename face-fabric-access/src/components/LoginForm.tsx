@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -15,10 +14,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import FacialCapture from "./FacialCapture";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 
+// Zod schema for validation
 const formSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address.",
@@ -31,10 +36,9 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const LoginForm = () => {
-  const [activeTab, setActiveTab] = useState("credentials");
-  const [faceImage, setFaceImage] = useState<string | null>(null);
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -44,25 +48,47 @@ const LoginForm = () => {
     },
   });
 
-  const handleFaceCapture = (imageSrc: string) => {
-    setFaceImage(imageSrc);
-    // In a real app, here we would verify the facial biometric with the backend
-  };
-
   const handleSubmit = async (data: FormValues) => {
+    setLoading(true);
     try {
       const user = await signIn(data.email, data.password);
       if (user) {
-        // For a full implementation, we would verify both password and facial
-        // biometrics before granting access
-        if (activeTab === "credentials" || faceImage) {
-          navigate("/dashboard");
-        } else {
-          setActiveTab("biometrics");
+        // Fetch user logs from backend
+        const response = await fetch("http://127.0.0.1:5000/getUserLogs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ campusID: data.email }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || "Failed to fetch user logs");
         }
+
+        // Format the logs for dashboard and access log display
+        const formattedLogs = result.logs?.status?.map((entry: any, index: number) => ({
+          campusID: result.logs.campusID,
+          name: result.logs.name,
+          department: result.logs.department,
+          timestamp: new Date(entry.timestamp),
+          txID: entry.txID,
+          decision: entry.decision,
+        })) || [];
+
+        // Navigate to dashboard with the formatted logs
+        navigate("/dashboard", {
+          state: {
+            email: data.email,
+            accessLogs: formattedLogs,
+          },
+        });
       }
     } catch (error) {
       console.error("Login error:", error);
+      alert("Login failed. Please check your credentials.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -70,78 +96,51 @@ const LoginForm = () => {
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
         <CardTitle className="text-2xl text-brand-700">Secure Access</CardTitle>
-        <CardDescription>
-          Login with your credentials and facial verification
-        </CardDescription>
+        <CardDescription>Login with your credentials</CardDescription>
       </CardHeader>
+
       <CardContent>
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="credentials">Credentials</TabsTrigger>
-            <TabsTrigger value="biometrics">Face Verification</TabsTrigger>
-          </TabsList>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="john.doe@company.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <TabsContent value="credentials">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="john.doe@company.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input type="password" placeholder="********" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input type="password" placeholder="********" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button 
-                  type="submit" 
-                  className="w-full bg-brand-600 hover:bg-brand-700"
-                >
-                  Continue
-                </Button>
-              </form>
-            </Form>
-          </TabsContent>
-
-          <TabsContent value="biometrics">
-            <div className="space-y-4">
-              <div className="text-sm text-muted-foreground mb-4">
-                Please look directly at the camera for facial verification.
-              </div>
-              
-              <FacialCapture onCapture={handleFaceCapture} maxPhotos={1} />
-              
-              <Button 
-                type="button" 
-                className="w-full bg-brand-600 hover:bg-brand-700"
-                onClick={form.handleSubmit(handleSubmit)}
-                disabled={!faceImage}
-              >
-                Complete Login
-              </Button>
-            </div>
-          </TabsContent>
-        </Tabs>
+            <Button
+              type="submit"
+              className="w-full bg-brand-600 hover:bg-brand-700"
+              disabled={loading}
+            >
+              {loading ? "Logging in..." : "Login"}
+            </Button>
+          </form>
+        </Form>
       </CardContent>
+
       <CardFooter className="flex justify-center">
         <div className="text-sm text-muted-foreground">
           Don't have an account?{" "}
@@ -155,3 +154,4 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
