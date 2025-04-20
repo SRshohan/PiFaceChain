@@ -221,7 +221,7 @@ class Register(Resource):
 
         try:
             # Just store profile with empty face
-            result = InvokeOnBlockchain("CreateProfile", [campus_id, name, email, department, "placeholder_fe"])
+            result = InvokeOnBlockchain("CreateProfile", [email, name, email, department, "placeholder_fe"])
             if not result["success"]:
                 return jsonify({'error': 'Blockchain registration failed'})
 
@@ -231,9 +231,6 @@ class Register(Resource):
             })
         except Exception as e:
             return jsonify({'error': str(e)})
-
-
-
 
 
 class ApproveAccess(Resource):
@@ -278,9 +275,9 @@ if __name__ == "__main__":
     userInput = input("Enter 1 for registration or 2 for verification: ")
     if userInput == "1":
         # registration_process("srahman06@manhattan.edu", "sr", "srahman", "ece")  # Replace with actual values (campus_id, name, email, department)
-        register_no_camera("000523046")
+        register_no_camera("srshohan02@gmail.com")
     elif userInput == "2":
-        verification("srahman06@manhattan.edu")
+        verification("srshohan02@gmail.com")
     else:
         print("Invalid option selected.")
     # app = Flask(__name__)
