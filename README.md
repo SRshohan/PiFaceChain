@@ -1,16 +1,8 @@
 # 🔐 Secure Face Access
+<p align="center">
+  <img src="https://media3.giphy.com/media/Aij24UIRB36WSkY5je/200.webp?cid=ecf05e47qcb9x0bnlt398hfi98m4rqz5b1xwt29pod9h55vz&ep=v1_gifs_search&rid=200.webp&ct=g" alt="Secure Face Access Demo" />
+</p>
 
-Secure Face Access is a full-stack access control system that leverages **facial biometric authentication**, **blockchain-based logging**, and **role-based access approvals** to enable dynamic, secure access in large institutions and organizations.
-
-In large institutions like universities or corporations, access control needs to be **dynamic and decentralized**. For example, imagine a student needing access to a restricted lab. Traditionally, this would involve IT or security personnel, which can lead to delays. But what if a professor could approve access instantly, directly from their dashboard?
-
-That’s the problem **Secure Face Access** solves. By combining facial recognition, blockchain-backed logs, and a permission-based access workflow, we enable **seamless, secure access**—without unnecessary bottlenecks or middlemen.
-
-Built with **Hyperledger Fabric**, **Python**, **React**, and **Firebase**, this system allows users to register and authenticate using facial recognition, submit access requests to authorized personnel (e.g., professors), and view access logs stored immutably on the blockchain.
-
----
-
-![Secure Face Access Demo](https://media3.giphy.com/media/Aij24UIRB36WSkY5je/200.webp?cid=ecf05e47qcb9x0bnlt398hfi98m4rqz5b1xwt29pod9h55vz&ep=v1_gifs_search&rid=200.webp&ct=g)  
 
 <p align="center">
   <a href="https://pypi.org/project/secure-face-access">
@@ -31,8 +23,14 @@ Built with **Hyperledger Fabric**, **Python**, **React**, and **Firebase**, this
   
 </p>
 
----
-*Example: Live login using facial verification and blockchain-backed access approval.*
+Secure Face Access is a full-stack access control system that leverages **facial biometric authentication**, **blockchain-based logging**, and a **permission-based access workflow** to enable dynamic, secure access in large institutions and organizations.
+
+In large institutions like universities or corporations, access control needs to be **dynamic and decentralized**. For example, imagine a student needing access to a restricted lab. Traditionally, this would involve IT or security personnel, which can lead to delays. But what if a professor could approve access instantly, directly from their dashboard?
+
+That’s the problem **Secure Face Access** solves. By combining facial recognition, blockchain-backed logs, and a permission-based access workflow, we enable **seamless, secure access**—without unnecessary bottlenecks or middlemen.
+
+Built with **Hyperledger Fabric**, **Python**, **React**, and **Firebase**, this system allows users to register and authenticate using facial recognition, submit access requests to authorized personnel (e.g., professors), and view access logs stored immutably on the blockchain.
+
 
 ---
 
