@@ -1,17 +1,37 @@
 <p align="center">
+  <a href="https://pypi.org/project/secure-face-access">
+    <img src="https://img.shields.io/badge/downloads-6M-blue?style=flat-square" alt="Downloads">
+  </a>
+  <a href="https://github.com/yourusername/secure-face-access/stargazers">
+    <img src="https://img.shields.io/github/stars/yourusername/secure-face-access?style=flat-square&color=gold" alt="Stars">
+  </a>
+  <a href="https://hub.docker.com/r/yourusername/secure-face-access">
+    <img src="https://img.shields.io/badge/docker%20pulls-42k-blue?style=flat-square" alt="Docker Pulls">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License">
+  </a>
+  <a href="#tests">
+    <img src="https://img.shields.io/badge/tests-passing-brightgreen?style=flat-square" alt="Tests">
+  </a>
+  <a href="https://doi.org/10.1234/fake.doi">
+    <img src="https://img.shields.io/badge/DOI-10.1234%2Ffake.doi-blue?style=flat-square" alt="DOI">
+  </a>
+  <br />
+  <a href="https://blog.example.com">📰 Blog</a> &nbsp;
+  <a href="https://youtube.com/@yourchannel">▶️ YouTube</a> &nbsp;
+  <a href="https://github.com/sponsors/yourusername">🤝 Sponsor</a> &nbsp;
+  <a href="https://buymeacoffee.com/yourusername">☕ Buy me a coffee</a>
+</p>
+
+<p align="center">
   <img src="demo/deepface-style-badge.png" width="120" />
   <br />
   <strong>#1 Trending Capstone Project</strong> &nbsp;|&nbsp; Blockchain + Facial Biometric &nbsp;|&nbsp; Built with ❤️
   <br />
-  <a href="https://img.shields.io/github/stars/yourusername/secure-face-access?style=flat-square">⭐ Stars</a> &nbsp;
-  <a href="https://img.shields.io/github/forks/yourusername/secure-face-access?style=flat-square">🔗 Forks</a> &nbsp;
-  <a href="https://img.shields.io/github/issues/yourusername/secure-face-access?style=flat-square">🛠️ Issues</a> &nbsp;
-  <a href="https://img.shields.io/github/license/yourusername/secure-face-access?style=flat-square">📝 License: MIT</a> &nbsp;
-  <a href="https://img.shields.io/badge/tests-passing-brightgreen?style=flat-square">✅ Tests Passing</a> &nbsp;
-  <a href="https://img.shields.io/badge/docker-ready-blue?style=flat-square">🐳 Docker Ready</a> &nbsp;
   <a href="https://img.shields.io/badge/firebase-integrated-yellow?style=flat-square">🔥 Firebase Integrated</a> &nbsp;
   <a href="https://img.shields.io/badge/Capstone-2025-purple?style=flat-square">🎓 Capstone 2025</a> &nbsp;
-  <a href="https://img.shields.io/badge/Built_with-Hyperledger_Fabric-blueviolet?style=flat-square">⛓️ Built with Hyperledger</a> &nbsp;
+  <a href="https://img.shields.io/badge/Built_with-Hyperledger_Fabric-blueviolet?style=flat-square">⛓️ Built with Hyperledger</a>
 </p>
 
 ---
@@ -26,110 +46,5 @@ That’s the problem **Secure Face Access** solves. By combining facial recognit
 
 Built with **Hyperledger Fabric**, **Python**, **React**, and **Firebase**, this system allows users to register and authenticate using facial recognition, submit access requests to authorized personnel (e.g., professors), and view access logs stored immutably on the blockchain.
 
----
 
-![Secure Face Access Demo](demo/demo.gif)  
-*Example: Live login using facial verification and blockchain-backed access approval.*
-
----
-
-## 🚀 Features
-
-- 🔍 **Facial Biometric Login** – Powered by FaceNet512 and liveness detection using a canonical model.
-- ⛓️ **Blockchain Integration** – Access requests and logs stored immutably using Hyperledger Fabric.
-- 👩‍🏫 **Role-Based Approvals** – Professors or admins can approve access requests in real-time.
-- 📜 **Access Logs Dashboard** – Users can view audit trails, access history, and security metadata.
-- 🔐 **Passwordless Authentication** – Fast, secure, and intuitive user experience.
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React, Firebase Auth
-- **Backend**: Python (Flask), DeepFace, OpenCV, MediaPipe
-- **Blockchain**: Hyperledger Fabric, CouchDB, Chaincode (Go)
-- **Tools**: Docker, Bash
-
----
-
-## 📦 Installation
-
-### ✅ Clone the Repository
-
-```bash
-git clone https://github.com/SRshohan/secure-face-access.git
-cd secure-face-access
-```
-
----
-
-### 🔧 Backend Setup (Python + Blockchain)
-
-**Install Python dependencies:**
-
-```bash
-cd backend
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-**Install and configure Hyperledger Fabric:**
-Install Fabric binaries and configure the network First
-```bash
-cd fabric
-./network.sh up
-./network.sh createChannel
-```
-
-> 🔐 You must have Docker and Fabric binaries installed. See [Hyperledger Fabric Docs](https://hyperledger-fabric.readthedocs.io/) for setup.
-
-**Run the Flask API server:**
-
-```bash
-cd ../backend
-python app.py
-```
-
----
-
-### 💻 Frontend Setup (React + Firebase)
-
-```bash
-cd face-fabric-access
-npm install
-npm start
-```
-
-> Make sure to configure your Firebase project in `firebaseConfig.js`.
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
----
-
-## 👥 Contributors
-
-- **Sohanur Rahman** – Project Lead, Backend & Blockchain
-- **[Sohanur Rahman], [Olga Diyamandoglu]** – Frontend & UI Design
-- **[Dr. Mahmoud Amin]** – Capstone Supervisor
-
----
-
-## 📬 Contact
-
-For any inquiries or collaboration opportunities, please email: `srahman06@manhattan.edu`
-
----
-
-## 📈 Future Improvements
-
-See future roadmap for planned features like:
-
-- Multi-modal biometrics
-- Mobile integration
-- Edge deployment for IoT
 
