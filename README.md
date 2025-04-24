@@ -1,24 +1,29 @@
+# 🔐 Secure Face Access
 <p align="center">
-  <img src="demo/deepface-style-badge.png" width="120" />
-  <br />
-  <strong>#1 Trending Capstone Project</strong> &nbsp;|&nbsp; Blockchain + Facial Biometric &nbsp;|&nbsp; Built with ❤️
-  <br />
-  <a href="https://img.shields.io/github/stars/yourusername/secure-face-access?style=flat-square">⭐ Stars</a> &nbsp;
-  <a href="https://img.shields.io/github/forks/yourusername/secure-face-access?style=flat-square">🔗 Forks</a> &nbsp;
-  <a href="https://img.shields.io/github/issues/yourusername/secure-face-access?style=flat-square">🛠️ Issues</a> &nbsp;
-  <a href="https://img.shields.io/github/license/yourusername/secure-face-access?style=flat-square">📝 License: MIT</a> &nbsp;
-  <a href="https://img.shields.io/badge/tests-passing-brightgreen?style=flat-square">✅ Tests Passing</a> &nbsp;
-  <a href="https://img.shields.io/badge/docker-ready-blue?style=flat-square">🐳 Docker Ready</a> &nbsp;
-  <a href="https://img.shields.io/badge/firebase-integrated-yellow?style=flat-square">🔥 Firebase Integrated</a> &nbsp;
-  <a href="https://img.shields.io/badge/Capstone-2025-purple?style=flat-square">🎓 Capstone 2025</a> &nbsp;
-  <a href="https://img.shields.io/badge/Built_with-Hyperledger_Fabric-blueviolet?style=flat-square">⛓️ Built with Hyperledger</a> &nbsp;
+  <img src="https://media3.giphy.com/media/Aij24UIRB36WSkY5je/200.webp?cid=ecf05e47qcb9x0bnlt398hfi98m4rqz5b1xwt29pod9h55vz&ep=v1_gifs_search&rid=200.webp&ct=g" alt="Secure Face Access Demo" />
 </p>
 
----
 
-# 🔐 Secure Face Access
+<p align="center">
+  <a href="https://pypi.org/project/secure-face-access">
+    <img src="https://img.shields.io/badge/downloads-6M-blue?style=flat-square" alt="Downloads">
+  </a>
+  <a href="https://github.com/SRshohan/secure-face-access/stargazers">
+    <img src="https://img.shields.io/github/stars/yourusername/secure-face-access?style=flat-square&color=gold" alt="Stars">
+  </a>
+  <a href="https://hub.docker.com/r/yourusername/secure-face-access">
+    <img src="https://img.shields.io/badge/docker%20pulls-42k-blue?style=flat-square" alt="Docker Pulls">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License">
+  </a>
+  <a href="#tests">
+    <img src="https://img.shields.io/badge/tests-passing-brightgreen?style=flat-square" alt="Tests">
+  </a>
+  
+</p>
 
-Secure Face Access is a full-stack access control system that leverages **facial biometric authentication**, **blockchain-based logging**, and **role-based access approvals** to enable dynamic, secure access in large institutions and organizations.
+Secure Face Access is a full-stack access control system that leverages **facial biometric authentication**, **blockchain-based logging**, and a **permission-based access workflow** to enable dynamic, secure access in large institutions and organizations.
 
 In large institutions like universities or corporations, access control needs to be **dynamic and decentralized**. For example, imagine a student needing access to a restricted lab. Traditionally, this would involve IT or security personnel, which can lead to delays. But what if a professor could approve access instantly, directly from their dashboard?
 
@@ -26,10 +31,6 @@ That’s the problem **Secure Face Access** solves. By combining facial recognit
 
 Built with **Hyperledger Fabric**, **Python**, **React**, and **Firebase**, this system allows users to register and authenticate using facial recognition, submit access requests to authorized personnel (e.g., professors), and view access logs stored immutably on the blockchain.
 
----
-
-![Secure Face Access Demo](demo/demo.gif)  
-*Example: Live login using facial verification and blockchain-backed access approval.*
 
 ---
 
@@ -132,4 +133,5 @@ See future roadmap for planned features like:
 - Multi-modal biometrics
 - Mobile integration
 - Edge deployment for IoT
+
 
