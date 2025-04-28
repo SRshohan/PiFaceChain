@@ -38,9 +38,9 @@ Built with **Hyperledger Fabric**, **Python**, **React**, and **Firebase**, this
 
 - 🔍 **Facial Biometric Login** – Powered by FaceNet512 and liveness detection using a canonical model.
 - ⛓️ **Blockchain Integration** – Access requests and logs stored immutably using Hyperledger Fabric.
-- 👩‍🏫 **Role-Based Approvals** – Professors or admins can approve access requests in real-time.
+- 👩‍🏫 **Approvals** – Professors or admins can approve access requests in real-time.
 - 📜 **Access Logs Dashboard** – Users can view audit trails, access history, and security metadata.
-- 🔐 **Passwordless Authentication** – Fast, secure, and intuitive user experience.
+- 🔐 **Passwordless Authentication** – Fast, secure, and intuitive user experience in Web UI.
 
 ---
 
@@ -69,7 +69,7 @@ cd secure-face-access
 **Install Python dependencies:**
 
 ```bash
-cd backend
+cd facial_id
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
